@@ -116,6 +116,12 @@
             z-index: 1000; /
         }
 
+        #close-search {
+            display: none;
+        }
+
+
+
 
     </style>
 </head>
@@ -123,7 +129,7 @@
 
     <div id="search-container">
         <input type="text" id="search-input" class="w-full p-3 text-lg border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="search here...">
-        <i class="fa-solid fa-xmark text-gray-500 cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
+        <i class="fa-solid fa-xmark text-white cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
     </div>
 
     <nav class="bg-[#1E1D1D] fixed w-full top-0 z-50">
@@ -132,27 +138,48 @@
                 
                 <div class="flex items-center space-x-3">
                     <img src="img/penguin.webp" alt="Logo" class="h-10 w-10">
-                    <span class="text-[#DA9E43] text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
+                    <span class="text-[#DA9E43] text-sm md:text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
                 </div>
     
                 <ul class="hidden md:flex items-center space-x-6 text-white font-[Poppins] text-lg">
                     <li>
-                        <a href="index.html" class="hover:text-[#DA9E43]">Home</a>
-                    </li>
+                        <a href="index.html" class="hover:text-[#DA9E43] text-sm flex items-center gap-2" >
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>                    
                     <li class="relative group">
-                        <a href="#" class="cursor-pointer text-[#DA9E43] relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]"" id="servicesLink">Services ▾</a>
+                        <a href="#"  class="text-[#DA9E43] text-sm flex items-center gap-2 relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]" id="servicesLink">
+                            <i class="fas fa-concierge-bell"></i> Services ▾
+                        </a>
                         <div class="hidden absolute bg-black text-white w-52 rounded-md shadow-lg mt-2" id="servicesDropdown">
-                            <a href="#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
-                            <a href="#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
-                            <a href="#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
-                            <a href="#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
-                            <a href="#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
-                            <a href="#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
-                            <a href="#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                            <a href="services.html#bridal" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-car"></i> Bridal Car Services
+                            </a>
+                            <a href="services.html#towing" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-truck"></i> Towing Services 24/7
+                            </a>
+                            <a href="services.html#trucking" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-shipping-fast"></i> Trucking Services
+                            </a>
+                            <a href="services.html#heavy" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-tools"></i> Heavy Equipment Rental
+                            </a>
+                            <a href="services.html#general" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-hard-hat"></i> General Construction & Maintenance
+                            </a>
+                            <a href="services.html#furniture" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-couch"></i> Furniture Hotel & Residential
+                            </a>
+                            <a href="services.html#auto" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-cogs"></i> Auto Parts
+                            </a>
                         </div>
-                    </li>   
-                    <li><a href="contact.html" class="hover:text-[#DA9E43]">Contact Us</a></li>
-    
+                    </li>                                                       
+                    <li>
+                        <a href="contact.html" class="hover:text-[#DA9E43] text-sm flex items-center gap-2">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </li>                        
                     <li>
                         <button id="search-toggle" class="text-white hover:text-[#DA9E43] focus:outline-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -166,21 +193,52 @@
             </div>
         </div>
     
-        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-2 space-y-2 text-center">
-            <a href="index.html" class="block px-4 py-2 hover:text-[#DA9E43]">Home</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-4 space-y-2 text-center">
+            <a href="index.html" class="block px-4 py-2 text-sm flex items-center justify-center gap-2 hover:text-[#DA9E43]">
+                <i class="fas fa-home"></i> Home
+            </a>
+
             <div class="relative">
-                <a href="services.html" id="mobileServicesLink"  class="block px-4 py-2 text-[#DA9E43] underline">Services ▾</a>
-                <div class="hidden">
-                    <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
-                    <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
-                    <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
-                    <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
-                    <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
-                    <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
-                    <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                <button id="mobile-services-toggle" class="block w-full text-left px-4 py-2 text-sm flex items-center justify-center gap-2 hover:text-[#DA9E43]">
+                    <i class="fas fa-concierge-bell"></i> Services ▾
+                </button>
+                <div id="mobile-services-dropdown" class="hidden bg-black text-white text-left w-full shadow-lg rounded-md">
+                    <a href="services.html#bridal" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43] text-[#DA9E43] underline">
+                        <i class="fas fa-car"></i> Bridal Car Services
+                    </a>
+                    <a href="services.html#towing" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-truck"></i> Towing Services 24/7
+                    </a>
+                    <a href="services.html#trucking" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-shipping-fast"></i> Trucking Services
+                    </a>
+                    <a href="services.html#heavy" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-tools"></i> Heavy Equipment Rental
+                    </a>
+                    <a href="services.html#general" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-hard-hat"></i> General Construction & Maintenance
+                    </a>
+                    <a href="services.html#furniture" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-couch"></i> Furniture Hotel & Residential
+                    </a>
+                    <a href="services.html#auto" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-cogs"></i> Auto Parts
+                    </a>
                 </div>
             </div>
-            <a href="contact.html" class="block px-4 py-2 hover:text-[#DA9E43]">Contact Us</a>
+
+            <a href="contact.html" class="block px-4 py-2 text-sm flex items-center justify-center gap-2 ">
+                <i class="fas fa-envelope"></i> Contact Us
+            </a>
+
+            <button id="mobile-search-toggle" class=" hover:text-[#DA9E43] focus:outline-none flex items-center justify-center w-full py-2">
+                <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+
+            <div id="mobile-search-container" class="hidden px-4 py-2">
+                <input type="text" id="mobile-search-input" class="w-full p-3 text-lg text-black border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="Search here...">
+                <i class="fa-solid fa-xmark text-white cursor-pointer ml-3 text-xl hover:text-gray-700" id="mobile-close-search"></i>
+            </div>            
         </div>
     </nav>
 
@@ -211,14 +269,14 @@
                 <div class="swiper bridalSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/bridal1.jpg" alt="Luxury Bridal Car" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/bridal1.jpg" alt="Luxury Bridal Car" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/bridal2.webp" alt="Wedding Car Decor" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/bridal2.webp" alt="Wedding Car Decor" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/bridal3.webp" alt="Elegant Wedding Ride" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/bridal3.webp" alt="Elegant Wedding Ride" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -254,7 +312,7 @@
                 </p>
     
                 <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
-                    Get Your Free Quote
+                    Book Now
                 </a>
             </div>
     
@@ -262,14 +320,14 @@
                 <div class="swiper towingSwiper w-full">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/towing1.webp" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/towing1.webp" alt="towing service" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/towing2.webp" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/towing2.webp" alt="towing service" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/towing3.jpeg" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/towing3.jpeg" alt="towing service" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -303,7 +361,7 @@
                 </p>
     
                 <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
-                    Get a Quote
+                    Book Now
                 </a>
             </div>
     
@@ -311,14 +369,14 @@
                 <div class="swiper truckingSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/trucking1.png" alt="Trucking service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/trucking1.png" alt="Trucking service" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/trucking2.webp" alt="Trucking front" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/trucking2.webp" alt="Trucking front" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/trucking3.webp" alt="Trucking back" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/trucking3.webp" alt="Trucking back" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -360,14 +418,14 @@
                 <div class="swiper heavySwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/heavy1.jpeg" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/heavy1.jpeg" alt="Heavy Equipment Rental" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/heavy2.webp" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/heavy2.webp" alt="Heavy Equipment Rental" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/heavy3.jpg" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/heavy3.jpg" alt="Heavy Equipment Rental" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -406,14 +464,14 @@
                 <div class="swiper generalSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/construction1.jpg" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/construction1.jpg" alt="General Construction" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/construction2.jpg" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/construction2.jpg" alt="General Construction" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/construction3.png" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/construction3.png" alt="General Construction" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -452,14 +510,14 @@
                 <div class="swiper furnitureSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/furniture1.jpg" alt="Hotel Furniture" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/furniture1.jpg" alt="Hotel Furniture" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/furniture2.webp" alt="Residential Furniture" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/furniture2.webp" alt="Residential Furniture" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/hotel3.jpg" alt="Hotel" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/hotel3.jpg" alt="Hotel" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>
@@ -492,7 +550,7 @@
     
     
                 <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
-                    Get a Quote Now
+                    Book Now
                 </a>
             </div>
     
@@ -500,14 +558,14 @@
                 <div class="swiper autoSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="img/auto1.jpg" alt="Car Engine Parts" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/auto1.jpg" alt="Car Engine Parts" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/auto2.jpg" alt="Brake and Suspension Components" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                            <img src="img/auto2.jpg" alt="Brake and Suspension Components" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
                         </div>
                         <div class="swiper-slide">
-                            <img src="img/auto3.png" alt="Auto Accessories" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
-                        </div>
+                            <img src="img/auto3.png" alt="Auto Accessories" class="border-4 border-[#DA9E43] rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>                        
                     </div>
                     <div class="swiper-button-next text-[#DA9E43]"></div>
                     <div class="swiper-button-prev text-[#DA9E43]"></div>

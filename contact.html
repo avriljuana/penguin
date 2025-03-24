@@ -113,6 +113,12 @@
             z-index: 1000; /
         }
 
+        #close-search {
+            display: none;
+        }
+
+
+
 
     </style>
 </head>
@@ -120,7 +126,7 @@
 
     <div id="search-container">
         <input type="text" id="search-input" class="w-full p-3 text-lg border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="search here...">
-        <i class="fa-solid fa-xmark text-gray-500 cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
+        <i class="fa-solid fa-xmark text-white cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
     </div>
 
     <nav class="bg-[#1E1D1D] fixed w-full top-0 z-50">
@@ -129,27 +135,48 @@
                 
                 <div class="flex items-center space-x-3">
                     <img src="img/penguin.webp" alt="Logo" class="h-10 w-10">
-                    <span class="text-[#DA9E43] text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
+                    <span class="text-[#DA9E43] text-sm md:text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
                 </div>
     
                 <ul class="hidden md:flex items-center space-x-6 text-white font-[Poppins] text-lg">
                     <li>
-                        <a href="index.html" class="hover:text-[#DA9E43]">Home</a>
-                    </li>
+                        <a href="index.html" class="hover:text-[#DA9E43] text-sm flex items-center gap-2" >
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>                    
                     <li class="relative group">
-                        <a href="#" class="cursor-pointer hover:text-[#DA9E43]" id="servicesLink">Services ▾</a>
+                        <a href="services.html" class="hover:text-[#DA9E43] text-sm flex items-center gap-2" id="servicesLink">
+                            <i class="fas fa-concierge-bell"></i> Services ▾
+                        </a>
                         <div class="hidden absolute bg-black text-white w-52 rounded-md shadow-lg mt-2" id="servicesDropdown">
-                            <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
-                            <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
-                            <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
-                            <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
-                            <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
-                            <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
-                            <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                            <a href="services.html#bridal" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-car"></i> Bridal Car Services
+                            </a>
+                            <a href="services.html#towing" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-truck"></i> Towing Services 24/7
+                            </a>
+                            <a href="services.html#trucking" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-shipping-fast"></i> Trucking Services
+                            </a>
+                            <a href="services.html#heavy" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-tools"></i> Heavy Equipment Rental
+                            </a>
+                            <a href="services.html#general" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-hard-hat"></i> General Construction & Maintenance
+                            </a>
+                            <a href="services.html#furniture" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-couch"></i> Furniture Hotel & Residential
+                            </a>
+                            <a href="services.html#auto" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                                <i class="fas fa-cogs"></i> Auto Parts
+                            </a>
                         </div>
-                    </li>  
-                    <li><a href="contact.html" class="text-[#DA9E43] relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]">Contact Us</a></li>
-    
+                    </li>                                                       
+                    <li>
+                        <a href="contact.html" class="text-[#DA9E43] text-sm flex items-center gap-2 relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]"">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </li>                        
                     <li>
                         <button id="search-toggle" class="text-white hover:text-[#DA9E43] focus:outline-none">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -163,88 +190,122 @@
             </div>
         </div>
     
-        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-2 space-y-2 text-center">
-            <a href="index.html" class="block px-4 py-2">Home</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-4 space-y-2 text-center">
+            <a href="index.html" class="block px-4 py-2 text-sm flex items-center justify-center gap-2 hover:text-[#DA9E43]">
+                <i class="fas fa-home"></i> Home
+            </a>
+
             <div class="relative">
-                <a href="services.html" id="mobileServicesLink" class="block px-4 py-2 hover:text-[#DA9E43]">Services ▾</a>
-                <div class="hidden">
-                    <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
-                    <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
-                    <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
-                    <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
-                    <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
-                    <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
-                    <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                <button id="mobile-services-toggle" class="block w-full text-left px-4 py-2 text-sm flex items-center justify-center gap-2 hover:text-[#DA9E43]">
+                    <i class="fas fa-concierge-bell"></i> Services ▾
+                </button>
+                <div id="mobile-services-dropdown" class="hidden bg-black text-white text-left w-full shadow-lg rounded-md">
+                    <a href="services.html#bridal" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-car"></i> Bridal Car Services
+                    </a>
+                    <a href="services.html#towing" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-truck"></i> Towing Services 24/7
+                    </a>
+                    <a href="services.html#trucking" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-shipping-fast"></i> Trucking Services
+                    </a>
+                    <a href="services.html#heavy" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-tools"></i> Heavy Equipment Rental
+                    </a>
+                    <a href="services.html#general" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-hard-hat"></i> General Construction & Maintenance
+                    </a>
+                    <a href="services.html#furniture" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-couch"></i> Furniture Hotel & Residential
+                    </a>
+                    <a href="services.html#auto" class="block px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#DA9E43]">
+                        <i class="fas fa-cogs"></i> Auto Parts
+                    </a>
                 </div>
             </div>
-            <a href="contact.html" class="block px-4 py-2 text-[#DA9E43] underline">Contact Us</a>
+
+            <a href="contact.html" class="block px-4 py-2 text-sm flex items-center justify-center gap-2 text-[#DA9E43] underline">
+                <i class="fas fa-envelope"></i> Contact Us
+            </a>
+
+            <button id="mobile-search-toggle" class=" hover:text-[#DA9E43] focus:outline-none flex items-center justify-center w-full py-2">
+                <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+
+            <div id="mobile-search-container" class="hidden px-4 py-2">
+                <input type="text" id="mobile-search-input" class="w-full p-3 text-lg text-black border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="Search here...">
+                <i class="fa-solid fa-xmark text-white cursor-pointer ml-3 text-xl hover:text-gray-700" id="mobile-close-search"></i>
+            </div>            
         </div>
     </nav>
-
-
-    <section class="max-w-6xl mx-auto px-4 py-20">
-        <h1 class="text-5xl font-bold text-center py-12 text-[#1E1D1D]">Contact Us</h1>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-white p-10 shadow-lg rounded-lg">
-                <h2 class="text-2xl font-semibold text-[#DA9E43] mb-4">Get in Touch</h2>
-                <form action="submit_contact.php" method="POST">
-                    <div class="mb-5">
-                        <label class="block text-gray-700 font-medium">Full Name</label>
-                        <input type="text" name="name" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
+    <section class="max-w-3xl mx-auto px-6 py-6 border-4 border-[#DA9E43] rounded-lg mt-24 mb-20">
+        <h1 class="text-2xl md:text-3xl font-bold text-center pb-3 text-[#1E1D1D]">Contact Us</h1>
+    
+        <div class="bg-white p-4 md:p-5 shadow-lg rounded-lg">
+            <h2 class="text-lg font-semibold text-[#DA9E43] mb-3 text-center">Get in Touch</h2>
+            <form action="submit_contact.php" method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-700 text-sm font-medium">Full Name</label>
+                        <input type="text" name="name" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DA9E43] text-sm">
                     </div>
-                    <div class="mb-5">
-                        <label class="block text-gray-700 font-medium">Email</label>
-                        <input type="email" name="email" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
+                    <div>
+                        <label class="block text-gray-700 text-sm font-medium">Email</label>
+                        <input type="email" name="email" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DA9E43] text-sm">
                     </div>
-                    <div class="mb-5">
-                        <label class="block text-gray-700 font-medium">Subject</label>
-                        <input type="text" name="subject" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
-                    </div>
-                    <div class="mb-5">
-                        <label class="block text-gray-700 font-medium">Message</label>
-                        <textarea name="message" rows="3" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]"></textarea>
-                    </div>
-                    <button type="submit" class="bg-[#DA9E43] text-white py-3 px-6 rounded-lg hover:bg-[#b67c2f]">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-
-            <div class="bg-white p-10 shadow-lg rounded-lg text-center">
-                <h2 class="text-2xl font-semibold text-[#DA9E43] mb-4">Contact Information</h2>
-                <p class="text-gray-600 mb-6">Reach out to us through the form or the details below.</p>
-                
-                <div class="flex items-center mb-5">
-                    <i class="fas fa-map-marker-alt text-[#DA9E43] text-xl mr-3"></i>
-                    <p></p>
                 </div>
-                
-                <div class="flex items-center mb-5">
-                    <i class="fas fa-phone text-[#DA9E43] text-xl mr-3"></i>
-                    <p>(0925) 551 0987</p>
+    
+                <div class="mt-3">
+                    <label class="block text-gray-700 text-sm font-medium">Subject</label>
+                    <input type="text" name="subject" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DA9E43] text-sm">
                 </div>
-                
-                <div class="flex items-center mb-5">
-                    <i class="fas fa-envelope text-[#DA9E43] text-xl mr-3"></i>
-                    <p>info.qpssco@gmail.co</p>
+    
+                <div class="mt-3">
+                    <label class="block text-gray-700 text-sm font-medium">Message</label>
+                    <textarea name="message" rows="2" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DA9E43] text-sm"></textarea>
                 </div>
-
-                <div class="mt-8 text-center">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Follow Us</h3>
-                    <div class="flex space-x-5">
-                        <a href="https://facebook.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-twitter"></i></a>
+    
+                <button type="submit" class="w-full bg-[#DA9E43] text-white py-2 px-4 rounded-lg text-sm hover:bg-[#b67c2f] transition duration-300 mt-3">
+                    Send Message
+                </button>
+            </form>
+    
+            <div class="mt-4 flex flex-col md:flex-row justify-between">
+                <div class="text-left text-sm text-gray-700">
+                    <h2 class="text-lg font-semibold text-[#DA9E43] mb-2">Reach us at: </h2>
+                    
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-map-marker-alt text-[#DA9E43] text-lg mr-2"></i>
+                        <p> 123 Mango Street, Barangay San Isidro, Quezon City, Metro Manila, 1100, Philippines</p>
+                    </div>
+                    
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-phone text-[#DA9E43] text-lg mr-2"></i>
+                        <p>(0925) 551 0987</p>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-[#DA9E43] text-lg mr-2"></i>
+                        <p>info.qpssco@gmail.com</p>
+                    </div>
+                </div>
+    
+                <div class="text-center md:w-1/2">
+                    <h3 class="text-lg font-semibold text-[#DA9E43] mb-2 mt-8">Follow Us</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://facebook.com" target="_blank" class="text-[#DA9E43] text-2xl hover:text-[#b67c2f] transition duration-300"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="text-[#DA9E43] text-2xl hover:text-[#b67c2f] transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="text-[#DA9E43] text-2xl hover:text-[#b67c2f] transition duration-300"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <footer class="bg-black text-white text-center py-4">
         &copy; 2025 Penguin Sales & Services Company | All Rights Reserved
     </footer>
+    
 
     <script src="script.js"></script>
 

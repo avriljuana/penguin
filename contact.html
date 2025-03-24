@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Sales & Services Company</title>
+    <link rel="icon" type="image/png" href="img/penguin.webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 200px;
+            z-index: 999;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+        
+        #search-container {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            display: none;
+            align-items: center;
+            border: 2px solid #DA9E43;
+            z-index: 9999;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #search-container.active {
+            display: flex;
+        }
+
+        #search-container input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        #close-search {
+            margin-left: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: gray;
+            transition: color 0.2s;
+        }
+
+        #close-search:hover {
+            color: black;
+        }
+
+
+        
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            
+            background: url('img/hero_bg.jpg') no-repeat center center/cover;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75); 
+            z-index: 1;
+        }
+
+        #hero .content {
+            position: relative;
+            z-index: 2;
+        }
+        .search-box {
+            position: absolute;
+            z-index: 1000; /
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <input type="text" id="search-input" class="w-full p-3 text-lg border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="search here...">
+        <i class="fa-solid fa-xmark text-gray-500 cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
+    </div>
+
+    <nav class="bg-[#1E1D1D] fixed w-full top-0 z-50">
+        <div class="max-w-full mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                
+                <div class="flex items-center space-x-3">
+                    <img src="img/penguin.webp" alt="Logo" class="h-10 w-10">
+                    <span class="text-[#DA9E43] text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
+                </div>
+    
+                <ul class="hidden md:flex items-center space-x-6 text-white font-[Poppins] text-lg">
+                    <li>
+                        <a href="index.html" class="hover:text-[#DA9E43]">Home</a>
+                    </li>
+                    <li class="relative group">
+                        <a href="#" class="cursor-pointer hover:text-[#DA9E43]" id="servicesLink">Services ▾</a>
+                        <div class="hidden absolute bg-black text-white w-52 rounded-md shadow-lg mt-2" id="servicesDropdown">
+                            <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
+                            <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
+                            <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
+                            <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
+                            <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
+                            <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
+                            <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                        </div>
+                    </li>  
+                    <li><a href="contact.html" class="text-[#DA9E43] relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]">Contact Us</a></li>
+    
+                    <li>
+                        <button id="search-toggle" class="text-white hover:text-[#DA9E43] focus:outline-none">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                </ul>
+    
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    ☰
+                </button>
+            </div>
+        </div>
+    
+        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-2 space-y-2 text-center">
+            <a href="index.html" class="block px-4 py-2">Home</a>
+            <div class="relative">
+                <a href="services.html" id="mobileServicesLink" class="block px-4 py-2 hover:text-[#DA9E43]">Services ▾</a>
+                <div class="hidden">
+                    <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
+                    <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
+                    <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
+                    <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
+                    <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
+                    <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
+                    <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                </div>
+            </div>
+            <a href="contact.html" class="block px-4 py-2 text-[#DA9E43] underline">Contact Us</a>
+        </div>
+    </nav>
+
+
+    <section class="max-w-6xl mx-auto px-4 py-20">
+        <h1 class="text-5xl font-bold text-center py-12 text-[#1E1D1D]">Contact Us</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="bg-white p-10 shadow-lg rounded-lg">
+                <h2 class="text-2xl font-semibold text-[#DA9E43] mb-4">Get in Touch</h2>
+                <form action="submit_contact.php" method="POST">
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium">Full Name</label>
+                        <input type="text" name="name" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium">Email</label>
+                        <input type="email" name="email" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium">Subject</label>
+                        <input type="text" name="subject" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]">
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium">Message</label>
+                        <textarea name="message" rows="3" required class="w-full mt-1 p-3 border rounded-lg focus:ring-[#DA9E43]"></textarea>
+                    </div>
+                    <button type="submit" class="bg-[#DA9E43] text-white py-3 px-6 rounded-lg hover:bg-[#b67c2f]">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <div class="bg-white p-10 shadow-lg rounded-lg text-center">
+                <h2 class="text-2xl font-semibold text-[#DA9E43] mb-4">Contact Information</h2>
+                <p class="text-gray-600 mb-6">Reach out to us through the form or the details below.</p>
+                
+                <div class="flex items-center mb-5">
+                    <i class="fas fa-map-marker-alt text-[#DA9E43] text-xl mr-3"></i>
+                    <p></p>
+                </div>
+                
+                <div class="flex items-center mb-5">
+                    <i class="fas fa-phone text-[#DA9E43] text-xl mr-3"></i>
+                    <p>(0925) 551 0987</p>
+                </div>
+                
+                <div class="flex items-center mb-5">
+                    <i class="fas fa-envelope text-[#DA9E43] text-xl mr-3"></i>
+                    <p>info.qpssco@gmail.co</p>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Follow Us</h3>
+                    <div class="flex space-x-5">
+                        <a href="https://facebook.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" class="text-[#DA9E43] text-3xl hover:text-[#b67c2f]"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white text-center py-4">
+        &copy; 2025 Penguin Sales & Services Company | All Rights Reserved
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

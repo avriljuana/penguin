@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Sales & Services Company</title>
+    <link rel="icon" type="image/png" href="img/penguin.webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 200px;
+            z-index: 999;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+        
+        #search-container {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            display: none;
+            align-items: center;
+            border: 2px solid #DA9E43;
+            z-index: 9999;
+            transition: all 0.2s ease-in-out;
+        }
+
+        #search-container.active {
+            display: flex;
+        }
+
+        #search-container input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        #close-search {
+            margin-left: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: gray;
+            transition: color 0.2s;
+        }
+
+        #close-search:hover {
+            color: black;
+        }
+
+
+        
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            
+            background: url('img/hero_bg.jpg') no-repeat center center/cover;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75); 
+            z-index: 1;
+        }
+
+        #hero .content {
+            position: relative;
+            z-index: 2;
+        }
+        .search-box {
+            position: absolute;
+            z-index: 1000; /
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <input type="text" id="search-input" class="w-full p-3 text-lg border-none outline-none rounded-md focus:ring-2 focus:ring-[#DA9E43]" placeholder="search here...">
+        <i class="fa-solid fa-xmark text-gray-500 cursor-pointer ml-3 text-xl hover:text-gray-700" id="close-search"></i>
+    </div>
+
+    <nav class="bg-[#1E1D1D] fixed w-full top-0 z-50">
+        <div class="max-w-full mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                
+                <div class="flex items-center space-x-3">
+                    <img src="img/penguin.webp" alt="Logo" class="h-10 w-10">
+                    <span class="text-[#DA9E43] text-lg font-bold font-[Poppins]">Penguin Sales & Services Company</span>
+                </div>
+    
+                <ul class="hidden md:flex items-center space-x-6 text-white font-[Poppins] text-lg">
+                    <li>
+                        <a href="index.html" class="hover:text-[#DA9E43]">Home</a>
+                    </li>
+                    <li class="relative group">
+                        <a href="#" class="cursor-pointer text-[#DA9E43] relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#DA9E43]"" id="servicesLink">Services ▾</a>
+                        <div class="hidden absolute bg-black text-white w-52 rounded-md shadow-lg mt-2" id="servicesDropdown">
+                            <a href="#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
+                            <a href="#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
+                            <a href="#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
+                            <a href="#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
+                            <a href="#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
+                            <a href="#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
+                            <a href="#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                        </div>
+                    </li>   
+                    <li><a href="contact.html" class="hover:text-[#DA9E43]">Contact Us</a></li>
+    
+                    <li>
+                        <button id="search-toggle" class="text-white hover:text-[#DA9E43] focus:outline-none">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                </ul>
+    
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    ☰
+                </button>
+            </div>
+        </div>
+    
+        <div id="mobile-menu" class="hidden md:hidden bg-black text-white py-2 space-y-2 text-center">
+            <a href="index.html" class="block px-4 py-2 hover:text-[#DA9E43]">Home</a>
+            <div class="relative">
+                <a href="services.html" id="mobileServicesLink"  class="block px-4 py-2 text-[#DA9E43] underline">Services ▾</a>
+                <div class="hidden">
+                    <a href="services.html#bridal" class="block px-4 py-2 hover:bg-[#DA9E43]">Bridal Car Services</a>
+                    <a href="services.html#towing" class="block px-4 py-2 hover:bg-[#DA9E43]">Towing Services 24/7</a>
+                    <a href="services.html#trucking" class="block px-4 py-2 hover:bg-[#DA9E43]">Trucking Services</a>
+                    <a href="services.html#heavy" class="block px-4 py-2 hover:bg-[#DA9E43]">Heavy Equipment Rental</a>
+                    <a href="services.html#general" class="block px-4 py-2 hover:bg-[#DA9E43]">General Construction & Maintenance</a>
+                    <a href="services.html#furniture" class="block px-4 py-2 hover:bg-[#DA9E43]">Furniture Hotel & Residential</a>
+                    <a href="services.html#auto" class="block px-4 py-2 hover:bg-[#DA9E43]">Auto Parts</a>
+                </div>
+            </div>
+            <a href="contact.html" class="block px-4 py-2 hover:text-[#DA9E43]">Contact Us</a>
+        </div>
+    </nav>
+
+    <section id="bridal" class="min-h-screen py-16 bg-gray-100 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Bridal Car Services
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8 mb-4">
+                    Make your wedding day even more special with our premium bridal car services. 
+                    We offer a selection of elegant, chauffeur-driven vehicles that ensure 
+                    a stylish and unforgettable entrance. Our professional drivers and pristine 
+                    fleet guarantee a luxurious, stress-free experience from pickup to destination.
+                </p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-check text-[#DA9E43]"></i> Luxury vehicles with chauffeur service</li>
+                    <li class="pl-4"><i class="fa-solid fa-check text-[#DA9E43]"></i> Elegant decorations tailored to your wedding theme</li>
+                    <li class="pl-4"><i class="fa-solid fa-check text-[#DA9E43]"></i> Punctual and professional service</li>
+                    <li class="pl-4"><i class="fa-solid fa-check text-[#DA9E43]"></i> Affordable packages for every budget</li>
+                </ul>
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Book Now
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper bridalSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/bridal1.jpg" alt="Luxury Bridal Car" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/bridal2.webp" alt="Wedding Car Decor" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/bridal3.webp" alt="Elegant Wedding Ride" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="towing" class="min-h-screen py-16 bg-white flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            
+            <div class="flex flex-col justify-center items-center text-justify md:space-y-6 h-full">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Towing Services 24/7
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8 mb-4">
+                    We are proud to inform you that we can handle any type of towing requirements, 
+                    no matter how complex or complicated.
+                </p>
+                
+                <h3 class="text-2xl font-semibold text-[#DA9E43] mt-6 mb-2">Provide the following details:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-map-marker-alt text-[#DA9E43]"></i> <strong>Pick up point:</strong> [Your Location]</li>
+                    <li class="pl-4"><i class="fa-solid fa-map-marker-alt text-[#DA9E43]"></i> <strong>Drop off point:</strong> [Your Destination]</li>
+                    <li class="pl-4"><i class="fa-solid fa-car text-[#DA9E43]"></i> <strong>Vehicle type:</strong> [Your Vehicle]</li>
+                </ul>
+    
+                <p class="text-lg text-gray-700 leading-relaxed mt-6">
+                    We are committed to providing fast, affordable, and reliable towing and recovery services. 
+                    We operate <span class="font-semibold text-[#DA9E43]">24 hours a day, seven days a week</span>. 
+                </p>
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Get Your Free Quote
+                </a>
+            </div>
+    
+            <div class="flex justify-center items-center h-full">
+                <div class="swiper towingSwiper w-full">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/towing1.webp" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/towing2.webp" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/towing3.jpeg" alt="towing service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section id="trucking" class="min-h-screen py-16 bg-gray-100 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Trucking Services
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8 mb-4">
+                    We offer a range of trucking services to meet your logistics needs, ensuring safe and efficient transportation of goods.
+                </p>
+                
+                <h3 class="text-2xl font-semibold text-[#DA9E43] mt-2">Our Services Include:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-truck text-[#DA9E43]"></i> <strong>Freight Hauling:</strong> Reliable and timely delivery of goods.</li>
+                    <li class="pl-4"><i class="fa-solid fa-box text-[#DA9E43]"></i> <strong>Moving Services:</strong> Safe and efficient transport of household or business items.</li>
+                    <li class="pl-4"><i class="fa-solid fa-road text-[#DA9E43]"></i> <strong>Long-Distance Trucking:</strong> Covering extensive routes across regions.</li>
+                </ul>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mt-6">
+                    Our dedicated team ensures that your goods reach their destination safely and on time. We offer customized solutions for every logistics requirement.
+                </p>
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Get a Quote
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper truckingSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/trucking1.png" alt="Trucking service" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/trucking2.webp" alt="Trucking front" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/trucking3.webp" alt="Trucking back" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="heavy" class="min-h-screen py-16 bg-white flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Heavy Equipment Rental
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8 mb-4">
+                    We offer top-quality heavy equipment rentals at competitive rates. 
+                    Our fleet is well-maintained and ready to support your construction and industrial projects.
+                </p>
+    
+                <h3 class="text-2xl font-semibold text-[#DA9E43] mt-6 mb-2">Provide the following details for a quote:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-map-marker-alt text-[#DA9E43]"></i> <strong>Location:</strong> [Your Project Site]</li>
+                    <li class="pl-4"><i class="fa-solid fa-list text-[#DA9E43]"></i> <strong>Scope of work/project:</strong> [Project Description]</li>
+                    <li class="pl-4"><i class="fa-solid fa-clock text-[#DA9E43]"></i> <strong>Hours:</strong> [Estimated Rental Duration]</li>
+                </ul>
+    
+                <p class="text-lg text-gray-700 leading-relaxed mt-6">
+                    Our team is committed to providing high-performance equipment to meet your project requirements.
+                    We ensure reliability, safety, and efficiency in every rental.
+                </p>
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Book Now
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper heavySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/heavy1.jpeg" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/heavy2.webp" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/heavy3.jpg" alt="Heavy Equipment Rental" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="general" class="min-h-screen py-16 bg-gray-100 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-12">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-2xl font-bold text-[#DA9E43] text-center w-full border-2 border-[#DA9E43] p-3 rounded-lg">
+                    General Construction & Maintenance
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8 mb-4">
+                    We provide comprehensive construction and maintenance services, from small-scale repairs to large infrastructure projects. 
+                    Our team of skilled professionals ensures that every project is completed with precision, efficiency, and the highest quality standards.
+                </p>
+    
+                <h3 class="text-xl font-semibold text-[#DA9E43] mt-6 mb-2">Our Services Include:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-hammer text-[#DA9E43]"></i> <strong>Building Construction:</strong> Residential, commercial, and industrial projects.</li>
+                    <li class="pl-4"><i class="fa-solid fa-tools text-[#DA9E43]"></i> <strong>Renovation & Remodeling:</strong> Transform existing spaces with expert craftsmanship.</li>
+                    <li class="pl-4"><i class="fa-solid fa-wrench text-[#DA9E43]"></i> <strong>Preventive Maintenance:</strong> Regular inspections and repairs to extend the life of your property.</li>
+                </ul>
+    
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Book Now
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper generalSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/construction1.jpg" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/construction2.jpg" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/construction3.png" alt="General Construction" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="furniture" class="min-h-screen py-16 bg-white flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Furniture - Hotel & Residential
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed indent-8">
+                    We specialize in designing and manufacturing high-quality furniture tailored to hotels, resorts, and residential spaces. 
+                    Our custom furniture solutions blend style, comfort, and functionality to meet your unique interior needs.
+                </p>
+    
+                <h3 class="text-2xl font-semibold text-[#DA9E43]">Our Offerings:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-bed text-[#DA9E43]"></i> <strong>Hotel Furniture:</strong> Beds, nightstands, desks, chairs, and more.</li>
+                    <li class="pl-4"><i class="fa-solid fa-couch text-[#DA9E43]"></i> <strong>Residential Furniture:</strong> Living room, dining, and bedroom sets.</li>
+                    <li class="pl-4"><i class="fa-solid fa-tools text-[#DA9E43]"></i> <strong>Custom Design:</strong> Bespoke furniture tailored to your specifications.</li>
+                    <li class="pl-4"><i class="fa-solid fa-warehouse text-[#DA9E43]"></i> <strong>Bulk Orders:</strong> Large-scale furnishing for hotels and commercial spaces.</li>
+                </ul>
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Book Now
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper furnitureSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/furniture1.jpg" alt="Hotel Furniture" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/furniture2.webp" alt="Residential Furniture" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/hotel3.jpg" alt="Hotel" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="auto" class="min-h-screen py-16 bg-gray-100 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-16 items-center mt-8">
+            <div class="flex flex-col items-center text-justify md:space-y-6">
+                <h2 class="text-4xl font-bold text-[#DA9E43] text-center w-full mb-4 border-2 border-[#DA9E43] p-3 rounded-lg">
+                    Auto Parts
+                </h2>
+               
+                <p class="text-lg text-gray-700 leading-relaxed indent-8">
+                    We provide high-quality auto parts for all types of vehicles, ensuring durability, reliability, and performance. 
+                    Whether you're looking for replacement parts, upgrades, or essential maintenance components, we have you covered.
+                </p>
+    
+                <h3 class="text-2xl font-semibold text-[#DA9E43] mt-6 mb-2">Our Products:</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="pl-4"><i class="fa-solid fa-car-battery text-[#DA9E43]"></i> <strong>Electrical & Batteries:</strong> Batteries, alternators, and wiring components.</li>
+                    <li class="pl-4"><i class="fa-solid fa-cogs text-[#DA9E43]"></i> <strong>Engine & Performance:</strong> Filters, spark plugs, belts, and gaskets.</li>
+                    <li class="pl-4"><i class="fa-solid fa-tools text-[#DA9E43]"></i> <strong>Suspension & Brakes:</strong> Brake pads, rotors, shocks, and suspension kits.</li>
+                    <li class="pl-4"><i class="fa-solid fa-car text-[#DA9E43]"></i> <strong>Exterior & Interior Accessories:</strong> Lights, mirrors, seats, and mats.</li>
+                </ul>
+    
+    
+                <a href="contact.html" class="mt-8 inline-block bg-[#DA9E43] text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold hover:bg-[#b58234] transition">
+                    Get a Quote Now
+                </a>
+            </div>
+    
+            <div class="relative">
+                <div class="swiper autoSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/auto1.jpg" alt="Car Engine Parts" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/auto2.jpg" alt="Brake and Suspension Components" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/auto3.png" alt="Auto Accessories" class="rounded-lg shadow-lg w-full h-[350px] object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next text-[#DA9E43]"></div>
+                    <div class="swiper-button-prev text-[#DA9E43]"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <footer class="bg-black text-white text-center py-4">
+        &copy; 2025 Penguin Sales & Services Company | All Rights Reserved
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        var swiper = new Swiper(".bridalSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".towingSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".truckingSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".heavySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".generalSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".furnitureSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiper = new Swiper(".autoSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+</body>
+</html>
